@@ -118,13 +118,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
-
-import os
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-
-]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 # Default primary key field type
@@ -133,3 +127,11 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'base.User'
+
+LOGIN_REDIRECT_URL = 'role_redirect'  # Our new redirect view
+LOGIN_URL = '/login/'
+
+# Add this setting to prevent redirect to Django admin for non-staff users
+ADMIN_SITE_HEADER = "BIDAYA Admin"
+
+# Custom middleware or settings can be added here if needed to control admin access

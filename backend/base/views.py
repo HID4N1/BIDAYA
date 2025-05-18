@@ -18,9 +18,6 @@ def contact(request):
 def projects(request):
     return render(request, 'base/projects.html')
 
-def login(request):
-    return render(request, 'base/conexion/login.html')
-
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
 def register(request):
@@ -37,25 +34,28 @@ def register(request):
                 Investor.objects.create(user=user)
             
             auth_login(request, user)
-            return redirect('home')
+            return redirect('login')
     else:
         user_form = UserRegisterForm()
     
     return render(request, 'base/conexion/register.html', {'user_form': user_form})
 
-def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            auth_login(request, user)
-            return redirect('home')
-        else:
-            error_message = "Invalid username or password."
-            return render(request, 'base/conexion/login.html', {'error_message': error_message})
-    else:
-        return render(request, 'base/conexion/login.html')
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+
+class CustomLoginView(LoginView):
+    template_name = 'base/conexion/login.html'
+
+    def get_success_url(self):
+        user = self.request.user
+        if user.user_type == 'ADM':  # Your custom admin
+            return reverse_lazy('admin_dashboard')  # Your custom dashboard URL
+        elif user.user_type == 'ENT':
+            return reverse_lazy('entrepreneur_dashboard')
+        elif user.user_type == 'INV':
+            return reverse_lazy('investor_dashboard')
+        return reverse_lazy('home')  # Fallback
+
 
 def logout(request):
     auth_logout(request)
@@ -63,8 +63,49 @@ def logout(request):
 
 from django.contrib.auth.decorators import login_required
 
-def admin_area(request):
-    if request.user.is_authenticated and request.user.user_type == User.UserType.ADMIN:
-        return render(request, 'base/admin_dashboard.html')
-    else:
-        return redirect('home')
+
+@login_required
+def role_redirect(request):
+    user = request.user
+    if user.user_type == 'ADM':
+        return redirect('admin_dashboard')
+    elif user.user_type == 'ENT':
+        return redirect('entrepreneur_dashboard')
+    elif user.user_type == 'INV':
+        return redirect('investor_dashboard')
+    return redirect('home')  # Fallback for undefined roles
+
+from .decorators import admin_required, entrepreneur_required, investor_required
+
+# admin views
+@admin_required
+def admin_dashboard(request):
+    return render(request, 'base/admin/admin_dashboard.html')
+
+@admin_required
+def admin_entrepreneurs(request):
+    return render(request, 'base/admin/admin_ENT.html')
+
+@admin_required
+def admin_investors(request):
+    return render(request, 'base/admin/admin_INV.html')
+
+@admin_required
+def admin_notifications(request):
+    return render(request, 'base/admin/admin_NOTIF.html')
+
+@admin_required
+def admin_analytics(request):
+    return render(request, 'base/admin/admin_analytics.html')
+
+# entrepreneur views
+
+@entrepreneur_required
+def entrepreneur_dashboard(request):
+    return render(request, 'base/entrepreneur/entrepreneur_dashboard.html')
+
+# investor views
+
+@investor_required
+def investor_dashboard(request):
+    return render(request, 'base/investisseur/investor_dashboard.html')

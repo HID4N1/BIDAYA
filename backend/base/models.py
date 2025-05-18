@@ -35,22 +35,20 @@ class User(AbstractUser):
         default=UserType.INVESTOR
     )
 
-    # permissions
     def save(self, *args, **kwargs):
+        # First save to create the user
         super().save(*args, **kwargs)
-        # Assign permissions based on user type
-        if self.user_type == self.UserType.ENTREPRENEUR:
-            self.user_permissions.add(
-                Permission.objects.get(codename='is_entrepreneur')
-            )
+        
+        # Assign new permissions
+        if self.user_type == self.UserType.ADMIN:
+            self.is_staff = False  # remove admin access to Django admin 
+            perm = Permission.objects.get(codename='is_admin')
+        elif self.user_type == self.UserType.ENTREPRENEUR:
+            perm = Permission.objects.get(codename='is_entrepreneur')
         elif self.user_type == self.UserType.INVESTOR:
-            self.user_permissions.add(
-                Permission.objects.get(codename='is_investor')
-            )
-        elif self.user_type == self.UserType.ADMIN:
-            self.user_permissions.add(
-                Permission.objects.get(codename='is_admin')
-            )
+            perm = Permission.objects.get(codename='is_investor')
+        
+        self.user_permissions.add(perm)
 
     class Meta:
         permissions = (

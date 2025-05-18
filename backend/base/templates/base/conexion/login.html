@@ -29,6 +29,7 @@
 
                     <form method="POST" class="auth-form">
                         {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
                         
                         <!-- Form Errors -->
                         {% if error %}

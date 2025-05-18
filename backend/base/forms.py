@@ -27,6 +27,11 @@ class UserRegisterForm(UserCreationForm):
             user.save()
         return user
 
+class adminRegisterForm(forms.ModelForm):
+    class Meta:
+        model = admin
+        fields = []
+
 class EntrepreneurRegisterForm(forms.ModelForm):
     class Meta:
         model = Entrepreneur

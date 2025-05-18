@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 def entrepreneur_required(view_func):
     actual_decorator = user_passes_test(
         lambda u: u.has_perm('crowdfunding.is_entrepreneur'),
-        login_url='/accounts/login/',
+        login_url='/login/',
         redirect_field_name=None
     )
     return actual_decorator(view_func)
@@ -13,7 +13,7 @@ def entrepreneur_required(view_func):
 def investor_required(view_func):
     actual_decorator = user_passes_test(
         lambda u: u.has_perm('crowdfunding.is_investor'),
-        login_url='/accounts/login/',
+        login_url='/login/',
         redirect_field_name=None
     )
     return actual_decorator(view_func)
@@ -21,7 +21,7 @@ def investor_required(view_func):
 def admin_required(view_func):
     actual_decorator = user_passes_test(
         lambda u: u.has_perm('crowdfunding.is_admin'),
-        login_url='/accounts/login/',
+        login_url='/login/',
         redirect_field_name=None
     )
     return actual_decorator(view_func)
