@@ -1,0 +1,73 @@
+{% extends 'base/base.html'%}
+{% load static%}
+
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Bienvenue à BIDAYA</h1>
+        <p>La plateforme de crowdfunding pour vos projets.</p>
+    </div>
+    <!-- main pic -->
+<div class="main" id="main-section">
+    <!-- image -->
+     <img src="{% static 'base/images/bg_3.jpg' %}" alt="" id="main-image">
+    <!-- text -->
+     <span class="top_of_img" id="main-text">
+        <h1 class="title" id="main-title">Ajourd'hui pour un <span>meilleur</span> demain</h1>
+        <p class="subtitle" id="main-subtitle">Bidaya : Unissons nos forces, réalisons vos projets</p>
+     </span>
+</div>
+<!-- text -->
+<p class="text" id="description-text">
+    BIDAYA est une plateforme en ligne qui permet à des individus, des entreprises ou des organisations de collecter des fonds pour leurs projets en sollicitant des contributions financières de la part du public. Les projets peuvent varier des initiatives créatives et artistiques aux  startups technologiques en passant  par des causes caritatives. Les utilisateurs peuvent explorer différents projets, choisir de contribuer et souvent recevoir des récompenses ou des parts en échange de leur soutienfinancier
+</p>
+<!-- button  -->
+<div class="Button_bidaya">
+    <a href="#">    
+        <button class="btn" id="bidaya-button">BIDAYA</button>
+    </a>
+</div>
+<center>
+    <h1> Les propositions les plus populaires</h1>
+</center>
+<br>
+<center>
+    <hr class="hr_yellow" style="height: 20px; background-color: orange; width: 200px; border-radius: 20px;">
+</center>
+<!-- project -->
+<div class="projects" id="projects-section">
+<!-- cards -->
+    <div class="card" id="project-card-1" style="width: 18rem;">
+        <img src="{% static 'base/images/bg_1.jpg' %}" class="card-img-top" alt="Project 1" id="project-image-1">
+        <div class="card-body">
+        <h5 class="card-title" id="project-title-1">Card title</h5>
+        <p class="card-text" id="project-description-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <div class="card-body">
+        <a href="#" class="card-link" id="project-link-1">more</a>    </div>
+    </div>
+    <div class="card" id="project-card-2" style="width: 18rem;">
+        <img src="{% static 'base/images/bg_2.jpeg' %}" class="card-img-top" alt="Project 2" id="project-image-2">
+        <div class="card-body">
+        <h5 class="card-title" id="project-title-2">Card title</h5>
+        <p class="card-text" id="project-description-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <div class="card-body">
+        <a href="#" class="card-link" id="project-link-2">more</a>    </div>
+    </div>
+    <div class="card" id="project-card-3" style="width: 18rem;">
+        <img src="{% static 'base/images/bg_4.jpeg' %}" class="card-img-top" alt="Project 3" id="project-image-3">
+        <div class="card-body">
+        <h5 class="card-title" id="project-title-3">Card title</h5>
+        <p class="card-text" id="project-description-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <div class="card-body">
+        <a href="#" class="card-link" id="project-link-3">more</a>    </div>
+    </div>
+</div>
+
+
+
+
+</body>
+{% endblock %}

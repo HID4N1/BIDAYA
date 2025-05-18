@@ -1,0 +1,57 @@
+{% load static %}
+
+
+<!-- Footer -->
+<footer class="footer" id="footer-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Social Media Links -->
+            <div class="col-md-6" id="social-links">
+                <div class="social-links">
+                    <a href="#" class="footer-link me-3" id="facebook-link">
+                        <img src="{% static 'base/images/facebook.svg' %}" alt="Facebook" class="social-icon">
+                    </a>
+                    <a href="#" class="footer-link me-3" id="instagram-link">
+                        <img src="{% static 'base/images/instagram.svg' %}" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="#" class="footer-link me-3" id="linkedin-link">
+                        <img src="{% static 'base/images/linkedin.svg' %}" alt="LinkedIn" class="social-icon">
+                    </a>
+                </div>
+            </div>
+            <!-- Newsletter -->
+            <div class="col-md-6 text-end" id="newsletter-section">
+                <h5 class="footer-title">Inscrivez-vous à notre newsletter</h5>
+                <form method="get" class="d-flex justify-content-end" id="newsletter-form">
+                    <input type="email" class="form-control me-2" placeholder="Entrez votre email" aria-label="Email" id="newsletter-email">
+                    <button class="btn" type="submit" id="newsletter-submit">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+        <!-- Footer Links -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <p class="mb-4">
+                    <a href="#" class="footer-link me-3" id="terms-link">Terms & Conditions</a>
+                    <span>|</span>
+                    <a href="#" class="footer-link me-3" id="privacy-link">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="footer-link me-3" id="accessibility-link">Accessibility</a>
+                    <span>|</span>
+                    <a href="#" class="footer-link" id="legal-link">Legal</a>
+                </p>
+                <hr>
+                <p>&copy; 2025 Bidaya. Tous droits réservés.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+ <!-- the pop up -->
+ <div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="close" id="close-popup">&times;</span>
+        <h2>Merci de vous être inscrit !</h2>
+        <p>Vous recevrez bientôt notre newsletter.</p>
+    </div>
+</div>

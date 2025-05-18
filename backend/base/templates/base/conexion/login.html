@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'base/images/logo.jpg' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'base/css/login.css' %}">
+    <title>Login | BIDAYA</title>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Image Section (50% width) -->
+        <div class="image-section">
+            <div class="image-overlay"></div>
+            <img src="{% static 'base/images/login.jpg' %}" alt="Eventify Background" class="auth-image">
+        </div>
+
+        <!-- Form Section (50% width) -->
+        <div class="form-section">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2>Sign In to BIDAYA</h2>
+                        <p>Enter your details to access your account</p>
+                    </div>
+
+                    <form method="POST" class="auth-form">
+                        {% csrf_token %}
+                        
+                        <!-- Form Errors -->
+                        {% if error %}
+                            <div class="form-errors">
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <!-- Username/Email Field -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required autofocus>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                            <div class="password-actions">
+                                <a href="#" class="forgot-password">Forgot Password?</a>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me -->
+                        <div class="form-group remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <div class="social-login">
+                                <p>Or sign in with</p>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
+                                    <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="register-link">
+                                Don't have an account? <a href="{% url 'register' %}">Register here</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
