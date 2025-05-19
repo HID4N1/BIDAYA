@@ -1,0 +1,182 @@
+:root {
+    --primary-color: #008080;
+    --secondary-color: #FFA500;
+    --light-color: #ecf0f1;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --text-dark: #1a1a1a;
+    --text-light: #FFFFFF;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Layout Basics */
+.container-fluid {
+    padding: 2rem;
+    background-color: var(--light-color);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1.mt-4 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Card Container */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+/* Metric Card Styling */
+.metric-card {
+    flex: 1 1 calc(25% - 2rem);
+    min-width: 240px;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Icon Circle */
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color); /* Default */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* Each Card Color */
+.card-contributors .icon-circle {
+    background-color: var(--success);
+}
+
+.card-investors .icon-circle {
+    background-color: var(--warning);
+}
+
+.card-revenue .icon-circle {
+    background-color: #3399ff;
+}
+
+.card-projects .icon-circle {
+    background-color: #8000b3;
+}
+
+.card-revenue .icon-circle {
+    background-color: var(--danger);
+}
+
+/* Text Content */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.metric-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.trend-indicator {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.trend-up {
+    color: var(--success);
+}
+
+.trend-down {
+    color: var(--danger);
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .metric-card {
+        flex: 1 1 calc(50% - 2rem);
+    }
+}
+
+@media (max-width: 576px) {
+    .metric-card {
+        flex: 1 1 100%;
+    }
+
+    .cards-container {
+        justify-content: center;
+    }
+}
+
+
+.quick-actions {
+    margin-top: 3rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow);
+}
+
+.quick-actions h4 {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    box-shadow: var(--shadow);
+}
+
+.action-btn.secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.action-btn.secondary:hover {
+    background-color: #e69500;
+}

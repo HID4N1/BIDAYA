@@ -30,14 +30,54 @@ class UserRegisterForm(UserCreationForm):
 class adminRegisterForm(forms.ModelForm):
     class Meta:
         model = admin
-        fields = []
+        fields = '__all__'
 
 class EntrepreneurRegisterForm(forms.ModelForm):
     class Meta:
         model = Entrepreneur
-        fields = []
+        fields = '__all__'
 
 class InvestorRegisterForm(forms.ModelForm):
     class Meta:
         model = Investor
-        fields = []
+        fields = '__all__'
+
+class EntrepreneurForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'phone', 'profile_picture']
+        widgets = {
+            'phone': forms.TextInput(attrs={'placeholder': '+1234567890'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'email@example.com'}),
+        }
+        labels = {
+            'last_name': 'Nom',
+            'first_name': 'Prénom',
+        }
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.user_type = User.UserType.ENTREPRENEUR
+        if commit:
+            user.save()
+        return user
+
+class InvestorForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'phone', 'profile_picture']
+        widgets = {
+            'phone': forms.TextInput(attrs={'placeholder': '+1234567890'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'email@example.com'}),
+        }
+        labels = {
+            'last_name': 'Nom',
+            'first_name': 'Prénom',
+        }
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.user_type = User.UserType.INVESTOR
+        if commit:
+            user.save()
+        return user

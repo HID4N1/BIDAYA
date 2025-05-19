@@ -11,6 +11,7 @@ from django.contrib.auth.models import Permission
 
 class User(AbstractUser):
     # Additional fields for the user model
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     username = models.CharField(max_length=30, unique=True)
@@ -187,6 +188,15 @@ class Investment(models.Model):
     
     def __str__(self):
         return f"{self.investor.user.get_full_name()} invested {self.amount} in {self.project.title}"
+
+class Donation(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    donor = models.ForeignKey(Investor, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.donor.user.get_full_name()} donated {self.amount} to {self.project.title}"
 
 class Payment(models.Model):
     investment = models.OneToOneField(

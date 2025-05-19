@@ -1,9 +1,9 @@
 from django.contrib import admin  # This import was missing
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Entrepreneur, Investor, Project, Media, Investment, Payment
+from .models import User, Entrepreneur, Investor, Project, Media, Investment, Payment, Category, Donation
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'user_type', 'is_staff')
+    list_display = ('username', 'id', 'email', 'first_name', 'last_name', 'user_type', 'is_staff')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'phone')}),
@@ -25,7 +25,9 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Entrepreneur)
 admin.site.register(Investor)
+admin.site.register(Category)
 admin.site.register(Project)
 admin.site.register(Media)
 admin.site.register(Investment)
+admin.site.register(Donation)
 admin.site.register(Payment)

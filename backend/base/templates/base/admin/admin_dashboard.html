@@ -1,5 +1,63 @@
+{% extends 'base/admin/main.html' %}
+{% load static %}
+
 {% block content %}
-<h1>Admin Dashboard</h1>
-<p>Welcome, {{ request.user.username }}</p>
-<!-- Admin specific content -->
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard Overview</h1>
+
+    <section class="metrics-section">
+        <div class="cards-container">
+            <!-- Card 1: Total entrepreneurs -->
+            <div class="metric-card card_contributors">
+                <div class="icon-circle">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="card-content">
+                    <span class="metric-title">Total Contributors</span>
+                    <span class="metric-value">{{ num_entrepreneurs }}</span>
+                    <span class="trend-indicator trend-up">+12% from last month</span>
+                </div>
+            </div>
+    
+            <!-- Card 2: Total investors -->
+            <div class="metric-card card_investors">
+                <div class="icon-circle">
+                    <i class="bi bi-coin card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <span class="metric-title">Total Investors</span>
+                    <span class="metric-value">{{ num_investors}}</span>
+                    <span class="trend-indicator trend-up">+2% from last month</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Total Projects -->
+            <div class="metric-card card_projects">
+                <div class="icon-circle">
+                    <i class="bi bi-briefcase-fill card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <span class="metric-title">Total projects</span>
+                    <span class="metric-value">{{ num_projects }}</span>
+                    <span class="trend-indicator trend-down">-5% from last month</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+        <!-- Quick Actions Section -->
+    <div class="quick-actions">
+        <h4><i class="bi bi-lightning"></i> Quick Actions</h4>
+        <div class="action-buttons">
+            <a href="#" class="action-btn secondary">
+                <i class="bi bi-megaphone"></i> Send Announcement
+            </a>
+            <a href="{% url 'admin_generate_report' %}" class="action-btn secondary">
+                <i class="bi bi-file-earmark-bar-graph"></i> Generate Report
+            </a>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

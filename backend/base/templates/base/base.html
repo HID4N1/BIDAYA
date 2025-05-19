@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BIDAYA</title>
+    <title>{% block title %}{{ page_title|default:"Eventify" }}{% endblock %}</title>
     <link rel="icon" href="{% static 'base/images/logo.png' %}" type="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'base/css/home.css' %}" />

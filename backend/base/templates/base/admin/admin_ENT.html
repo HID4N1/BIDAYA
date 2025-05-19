@@ -1,0 +1,68 @@
+{% extends 'base/admin/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Title -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Gestion des Entrepreneurs</h1>
+    </div>
+
+    <!-- Entrepreneurs Table -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des Entrepreneurs</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="entrepreneursTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Date d'inscription</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entrepreneur_user in entrepreneur_users %}
+                        <tr>
+                            <td>{{ entrepreneur_user.id }}</td>
+                            <td>{{ entrepreneur_user.last_name }}</td>
+                            <td>{{ entrepreneur_user.first_name }}</td>
+                            <td>{{ entrepreneur_user.email }}</td>
+                            <td>{{ entrepreneur_user.phone }}</td>
+                            <td>{{ entrepreneur_user.date_joined|date:"d/m/Y" }}</td>
+                            <td>
+                                <span class="badge {% if entrepreneur_user.is_active %}badge-success{% else %}badge-secondary{% endif %}">
+                                    {% if entrepreneur_user.is_active %}Actif{% else %}Inactif{% endif %}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{% url 'edit_entrepreneur' entrepreneur_user.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'delete_entrepreneur' entrepreneur_user.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center py-4">
+                                <p>Aucun Investisseur enregistré</p>
+                            
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
