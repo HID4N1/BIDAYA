@@ -1,6 +1,53 @@
+{% extends 'base/entrepreneur/main.html' %}
+{% load static %}
 
 {% block content %}
-<h1>Entrepreneur Dashboard</h1>
-<p>Welcome, {{ request.user.username }}</p>
-<!-- Entrepreneur specific content -->
+<div class="entrepreneur-dashboard">
+    <h1>Entrepreneur Dashboard</h1>
+
+    <div class="metrics-cards">
+        <div class="card">
+            <h3>Total Raised</h3>
+            <p>${{ total_raised|floatformat:2 }}</p>
+        </div>
+        <div class="card">
+            <h3>Investment</h3>
+            <p>${{ total_investment|floatformat:2 }}</p>
+        </div>
+        <div class="card">
+            <h3>Donations</h3>
+            <p>${{ total_donations|floatformat:2 }}</p>
+        </div>
+    </div>
+
+    <div class="charts-container">
+        <div class="chart-box">
+            <h3>Funding Overview</h3>
+            <div id="fundingOverviewChart" style="width: 600px; height: 400px; border: 1px solid red; background-color: #f0f0f0;"></div>
+        </div>
+        <div class="chart-box">
+            <h3>Project Success</h3>
+            <div id="projectSuccessChart" style="width: 600px; height: 400px; border: 1px solid red; background-color: #f0f0f0;"></div>
+        </div>
+    </div>
+
+    <div class="report-button-container">
+        <form method="get" action="{% url 'entrepreneur_generate_report' %}">
+            <button type="submit" class="btn btn-primary">Generate Analytics Report</button>
+        </form>
+    </div>
+</div>
+
+<!-- Embed JSON data for JS -->
+<script id="fundingLabels" type="application/json">{{ funding_labels|safe }}</script>
+<script id="fundingData" type="application/json">{{ funding_amounts|safe }}</script>
+<span id="fundedCount" style="display:none;">{{ funded_count }}</span>
+<span id="inProgressCount" style="display:none;">{{ in_progress_count }}</span>
+<span id="notFundedCount" style="display:none;">{{ not_funded_count }}</span>
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{% static 'base/js/ent_dashboard.js' %}"></script>
 {% endblock %}

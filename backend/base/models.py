@@ -118,16 +118,13 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     category = models.ManyToManyField(Category)
+    image = models.ImageField(upload_to='project_images/', blank=True, null=True)
     goal_amount = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         validators=[MinValueValidator(0.01)]
     )
-    current_amount = models.DecimalField(
-        max_digits=12,
-        decimal_places=2,
-        default=0
-    )
+    # Remove stored current_amount field
     status = models.CharField(
         max_length=2,
         choices=Status.choices,
@@ -152,8 +149,7 @@ class Project(models.Model):
             investor=investor,
             amount=amount
         )
-        self.current_amount += amount
-        self.save()
+        # No need to update current_amount field as it will be computed dynamically
         return investment
     
     def update_status(self, new_status):
@@ -167,6 +163,14 @@ class Project(models.Model):
     @property
     def days_remaining(self):
         return (self.deadline - timezone.now()).days if self.deadline else 0
+
+    @property
+    def current_amount(self):
+        # Sum of all investments amounts
+        investment_sum = self.investment_set.aggregate(total=models.Sum('amount'))['total'] or 0
+        # Sum of all donations amounts
+        donation_sum = self.donation_set.aggregate(total=models.Sum('amount'))['total'] or 0
+        return investment_sum + donation_sum
 
 class Media(models.Model):
     project = models.ForeignKey(

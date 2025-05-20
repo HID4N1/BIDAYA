@@ -81,3 +81,27 @@ class InvestorForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['title', 'description', 'category', 'goal_amount', 'deadline', 'image']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4}),
+            'goal_amount': forms.NumberInput(attrs={'min': 0}),
+            'deadline': forms.DateInput(attrs={'type': 'date'}),
+        }
+        labels = {
+            'title': 'Titre',
+            'description': 'Description',
+            'category': 'Catégorie',
+            'goal_amount': 'Montant cible',
+            'deadline': 'Date limite',
+            'image': 'Image du projet',
+        }
+    def save(self, commit=True):
+        project = super().save(commit=False)
+        # Removed assignment to project.user because Project model has no 'user' attribute
+        if commit:
+            project.save()
+        return project

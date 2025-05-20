@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #008080;
+    --secondary-color: #FFA500;
+    --light-color: #ecf0f1;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --text-dark: #1a1a1a;
+    --text-light: #FFFFFF;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Layout Basics */
+.entrepreneur-dashboard {
+    padding: 2rem;
+    color: var(--text-dark);
+
+
+}
+
+.entrepreneur-dashboard h1 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Metric Cards Container */
+.metrics-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+}
+
+/* Metric Card Styling */
+.metrics-cards .card {
+    flex: 1 1 calc(33% - 2rem);
+    min-width: 240px;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+
+.metrics-cards .card:hover {
+    transform: translateY(-4px);
+}
+
+.metrics-cards .card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.metrics-cards .card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* Charts Container */
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    z-index: -1;
+    gap: 2rem;
+    margin-top: 3rem;
+    justify-content: space-between;
+}
+
+.chart-box {
+    flex: 1 1 calc(50% - 2rem);
+    background-color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+}
+
+/* Report Button */
+.report-button-container {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.report-button-container .btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s ease;
+}
+
+.report-button-container .btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .metrics-cards .card {
+        flex: 1 1 calc(50% - 2rem);
+    }
+    .chart-box {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .metrics-cards .card {
+        flex: 1 1 100%;
+    }
+}

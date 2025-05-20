@@ -1,0 +1,311 @@
+/* Projects Container */
+.projects-container {
+    max-width: 1200px;
+    padding: 2rem 1rem;
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    }
+
+.projects-header {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-bottom: 2rem;
+     width: 100%;
+     background-color: #007b7b; /* Darker teal for better contrast */
+     padding: 1.5rem 2rem;
+       border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 12px rgba(0, 123, 123, 0.4);
+    flex-wrap: wrap;
+}
+.projects-header h1 {
+    font-size: 2.5rem;
+    color: white;
+
+}
+
+.filter-options {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 24px;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: white;
+    color: #4a6fa5;
+    border-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.no-projects {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Project Card */
+.project-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+.card-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
+.card-status.draft {
+    background-color: #6c757d;
+}
+
+.card-status.active {
+    background-color: #28a745;
+}
+
+.card-status.funded {
+    background-color: #17a2b8;
+}
+
+.card-status.completed {
+    background-color: #007bff;
+}
+
+.card-status.cancelled {
+    background-color: #dc3545;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.category-tag {
+    padding: 0.25rem 0.75rem;
+    background-color: #f0f8ff;
+    color: #4a6fa5;
+    border-radius: 20px;
+    font-size: 0.75rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.card-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.card-creator {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Progress Bar */
+.card-progress {
+    margin: 1.5rem 0;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4a6fa5;
+    border-radius: 4px;
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.amount-raised {
+    font-weight: bold;
+    color: #333;
+}
+
+.goal-amount {
+    color: #666;
+}
+
+.percentage {
+    color: #4a6fa5;
+    font-weight: bold;
+}
+
+/* Card Meta */
+.card-meta {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.meta-item i {
+    font-size: 0.9rem;
+}
+
+/* Card Button */
+.card-button {
+    display: block;
+    text-align: center;
+    padding: 0.75rem;
+    background-color: #4a6fa5;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #3a5a80;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.page-link {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover, .page-link.active {
+    background-color: #4a6fa5;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .filter-options {
+        flex-wrap: wrap;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+@media (max-width: 576px) {
+    .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .filter-options {
+        flex-wrap: wrap;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}

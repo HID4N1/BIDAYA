@@ -1,0 +1,22 @@
+{% extends 'base/entrepreneur/main.html'%}
+
+{% block content %}
+<div class="header">
+    <h1>My Projects</h1>
+</div>
+<div class="search-bar">
+    <form method="get" action="{% url 'entrepreneur_projects' %}">
+        <input type="text" name="q" placeholder="Search projects..." id="search-input" value="{{ search_query|default:'' }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div class="projects-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start;">
+    {% for project in projects %}
+        {% include 'base/includes/card.html' with project=project %}
+    {% empty %}
+        <p>No projects found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+

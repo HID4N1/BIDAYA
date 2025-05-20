@@ -1,0 +1,57 @@
+<div class="project-card">
+    <div class="card-image">
+        {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        {% else %}
+            <div class="no-image">No Image</div>
+        {% endif %}
+        <div class="card-status {{ project.status|lower }}">{{ project.get_status_display }}</div>
+    </div>
+    
+    <div class="card-content">
+        <div class="card-categories">
+            {% for category in project.category.all %}
+                <span class="category-tag">{{ category.name }}</span>
+            {% endfor %}
+        </div>
+        
+        <h3 class="card-title">{{ project.title }}</h3>
+        <p class="card-description">{{ project.description|truncatechars:100 }}</p>
+        
+        <div class="card-progress">
+            {% widthratio project.current_amount project.goal_amount 100 as progress_width %}
+            <div class="progress-bar">
+                <div class="progress-fill" data-progress="{{ progress_width }}"></div>
+            </div>
+            <div class="progress-stats">
+                <span class="amount-raised">${{ project.current_amount|floatformat:2 }}</span>
+                <span class="goal-amount">of ${{ project.goal_amount|floatformat:2 }}</span>
+                <span class="percentage">{{ progress_width }}%</span>
+            </div>
+        </div>
+        
+        <div class="card-meta">
+            <div class="meta-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ project.location }}</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>{{ project.days_remaining }} days left</span>
+            </div>
+        </div>
+        
+        <a href="{% url 'entrepreneur_project_detail' project.id %}" class="card-button">View Project</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.progress-fill').forEach(function(el) {
+        var progress = el.getAttribute('data-progress');
+        if (progress) {
+            el.style.width = progress + '%';
+        }
+    });
+});
+</script>

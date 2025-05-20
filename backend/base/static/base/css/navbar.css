@@ -83,7 +83,7 @@
 }
 
 #sign-in-button {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: white;
     border: none;
     border-radius: 6px;

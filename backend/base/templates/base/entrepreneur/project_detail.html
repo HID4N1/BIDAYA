@@ -1,0 +1,63 @@
+{% extends 'base/entrepreneur/main.html' %}
+
+{% block content %}
+<div class="project-detail-container">
+    <div class="project-image">
+        {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        {% else %}
+            <div class="no-image">No Image</div>
+        {% endif %}
+    </div>
+
+    <h1>{{ project.title }}</h1>
+
+    <div class="project-categories">
+        {% for category in project.category.all %}
+            <span class="category-tag">{{ category.name }}</span>
+        {% endfor %}
+    </div>
+
+    <p><strong>Description:</strong> {{ project.description }}</p>
+
+    <div class="project-progress">
+        {% widthratio project.current_amount project.goal_amount 100 as progress_width %}
+        <div class="progress-bar">
+            <div class="progress-fill" data-progress="{{ progress_width }}"></div>
+        </div>
+        <div class="progress-stats">
+            <span class="amount-raised">${{ project.current_amount|floatformat:2 }}</span>
+            <span class="goal-amount">of ${{ project.goal_amount|floatformat:2 }}</span>
+            <span class="percentage">{{ progress_width }}%</span>
+        </div>
+    </div>
+
+    <div class="project-meta">
+        <div class="meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ project.location }}</span>
+        </div>
+        <div class="meta-item">
+            <i class="fas fa-clock"></i>
+            <span>{{ project.days_remaining }} days left</span>
+        </div>
+    </div>
+
+    <div class="project-actions">
+        <a href="{% url 'entrepreneur_edit_project' project.id %}" class="btn btn-primary">Update Project</a>
+        <a href="{% url 'entrepreneur_delete_project' project.id %}" class="btn btn-danger">Delete Project</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var progressFill = document.querySelector('.progress-fill');
+    if (progressFill) {
+        var progress = progressFill.getAttribute('data-progress');
+        if (progress) {
+            progressFill.style.width = progress + '%';
+        }
+    }
+});
+</script>
+{% endblock %}
